@@ -1,3 +1,9 @@
 # RStudio temporary files
 .RData
 .Rhistory
+
+# IntelliJ IDEA
+.idea
+
+# Python byte-code
+*.pyc
