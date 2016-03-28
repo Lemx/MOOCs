@@ -1,2 +1,2 @@
-# moocs
-Everything MOOC-related (notes, problems, etc.) goes here.
+# MOOCs
+Everything MOOC-related (notes, assignments, etc.) goes here.

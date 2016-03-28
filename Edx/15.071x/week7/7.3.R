@@ -1,0 +1,27 @@
+tweets <- read.csv("tweets.csv", stringsAsFactors=FALSE)
+library(NLP)
+library(tm)
+corpus <- Corpus(VectorSource(tweets))
+corpus <- tm_map(corpus, tolower)
+corpus <- tm_map(corpus, PlainTextDocument)
+corpus <- tm_map(corpus, removePunctuation)
+corpus <- tm_map(corpus, removeWords, stopwords("english"))
+dtm <- DocumentTermMatrix(corpus)
+allTweets <- as.data.frame(as.matrix(dtm))
+
+install.packages("wordcloud")
+library(wordcloud)
+cloud <- wordcloud(words = colnames(allTweets), freq = colSums(allTweets))
+
+corpus <- Corpus(VectorSource(tweets))
+corpus <- tm_map(corpus, tolower)
+corpus <- tm_map(corpus, PlainTextDocument)
+corpus <- tm_map(corpus, removePunctuation)
+corpus <- tm_map(corpus, removeWords, c("apple",stopwords("english")))
+dtm <- DocumentTermMatrix(corpus)
+allTweets <- as.data.frame(as.matrix(dtm))
+cloud <- wordcloud(words = colnames(allTweets), freq = colSums(allTweets), scale=c(2, 0.25))
+
+
+install.packages("RColorBrewer")
+library(RColorBrewer)

@@ -1,0 +1,32 @@
+dailykos <- read.csv("dailykos.csv")
+dailykosVector <- as.vector(dailykos)
+distance <- dist(dailykosVector, method = "euclidean")
+cluster <- hclust(distance, method = "ward.D")
+plot(cluster)
+
+clusterGroups <- cutree(cluster, k = 7)
+spl <- split(dailykos[2:1545], clusterGroups)
+lapply(spl, nrow)
+
+tail(sort(colMeans(spl[[1]])))
+tail(sort(colMeans(spl[[2]])))
+tail(sort(colMeans(spl[[3]])))
+tail(sort(colMeans(spl[[4]])))
+tail(sort(colMeans(spl[[5]])))
+tail(sort(colMeans(spl[[6]])))
+tail(sort(colMeans(spl[[7]])))
+
+set.seed(1000)
+KMC <- kmeans(dailykosVector, centers = 7)
+spl <- split(dailykos[2:1545], KMC$cluster)
+lapply(spl, nrow)
+
+tail(sort(colMeans(spl[[1]])))
+tail(sort(colMeans(spl[[2]])))
+tail(sort(colMeans(spl[[3]])))
+tail(sort(colMeans(spl[[4]])))
+tail(sort(colMeans(spl[[5]])))
+tail(sort(colMeans(spl[[6]])))
+tail(sort(colMeans(spl[[7]])))
+
+table(clusterGroups, KMC$cluster)

@@ -7,3 +7,6 @@
 
 # Python byte-code
 *.pyc
+
+# IPython
+.ipynb_checkpoints
